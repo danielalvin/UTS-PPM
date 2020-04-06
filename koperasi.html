@@ -4,6 +4,51 @@
         <title>UTS PPM C14180160</title>
     </head>
     <body>
-        
+        Jumlah pinjaman : <input type="text" id="jml"><br><br>
+        Waktu pinjaman : <input type="text" id="wkt"><br><br>
+        <input type="button" id="inpt" value="Input" onclick="input()"><br><br>
+        <div id="reqs"></div>
     </body>
+
+    <script>
+        function input(){
+            var cicilan;
+            var total;
+            if (document.getElementById("wkt").value <= 6){
+                cicilan = 2;
+                total = document.getElementById("jml").value + document.getElementById("jml").value * (cicilan/100) * document.getElementById("wkt").value;
+            }
+            else if (document.getElementById("wkt").value >= 7 && document.getElementById("wkt").value <= 12){
+                cicilan = 1.5;
+                total = document.getElementById("jml").value + document.getElementById("jml").value * (cicilan/100) * document.getElementById("wkt").value;
+            }
+            else if(document.getElementById("wkt").value > 12){
+                cicilan = 1;
+                total = document.getElementById("jml").value + document.getElementById("jml").value * (cicilan/100) * document.getElementById("wkt").value;
+            }
+
+            brk=document.createElement("br");
+
+            var label1 = document.createElement('text');
+            label1.setAttribute('id', 'label1');
+            label1.setAttribute("type", "text");
+            label1.innerHTML = "Pinjaman : " + document.getElementById("jml").value + ", waktu pinjam : " +
+            document.getElementById("wkt").value + " Cicilan";
+
+            var label2 = document.createElement('text');
+            label2.setAttribute('id', 'label2');
+            label2.setAttribute("type", "text");
+            label2.innerHTML = "Total Pengembalian : " + document.getElementById("jml").value + " + (" +
+            document.getElementById("jml").value + " * " + cicilan + "% * " + document.getElementById("wkt").value +
+            ") = " + total;
+
+            
+            var reqs = document.getElementById("reqs");
+		    reqs.appendChild(label1);
+            reqs.appendChild(brk);
+            reqs.appendChild(label2);
+            reqs.appendChild(brk);
+            reqs.appendChild(brk);
+        }
+    </script>
 </html>
